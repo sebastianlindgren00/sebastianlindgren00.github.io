@@ -19,12 +19,12 @@ function ProfileCard() {
             scale={1.0}
             gyroscope={true}
             >
-                <div className="w-[500px] drop-shadow-2xl bg-gradient-to-r rounded-full animated-background from-orange-500 via-slate-500 to-gblue p-0.5 mr-20">
+                <div className="w-[500px] drop-shadow-2xl bg-gradient-to-r rounded-full from-black via-orange-500 to-[#333333] p-0.5 mr-20">
                     <img src="/profilbild.png" alt="Profile"/>
                 </div>
             </Tilt>
                 <div className="flex flex-col  w-[800px]">
-                    <h1 className="text-5xl bg-gradient-to-r from-black to-slate-500 text-transparent bg-clip-text border-b-[px] border-black border-solid h-20 float-left">
+                    <h1 className="text-5xl bg-gradient-to-r from-black to-[#333333] text-transparent bg-clip-text border-b-[px] border-black border-solid h-20 float-left">
                         Sebastian Lindgren
                     </h1>
                     <div className="flex flex-row mt-7 w-[900px] m-auto mb-4 ml-36">

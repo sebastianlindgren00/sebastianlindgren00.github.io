@@ -49,7 +49,7 @@ function Project({ title, text, emoji, imgSrc, videoSrc, githubLink, tags }: Ski
 
     return (
         <motion.div
-            className="flex flex-col bg-[white] overflow-hidden rounded-xl shadow-lg h-[600px]"
+            className="flex flex-col bg-[white] overflow-hidden rounded-xl shadow-lg"
             initial={{ scale: 1 }}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 1.0, ease: "easeInOut" }}

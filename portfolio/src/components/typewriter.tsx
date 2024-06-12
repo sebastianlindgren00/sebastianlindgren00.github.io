@@ -31,7 +31,7 @@ function TypeWriter() {
 
     return (
         <div style={{ minHeight: '2.5em' }}>
-            <h1 id="typewriter" className="text-3xl font-bold text-slate-300">{text}</h1>
+            <h1 id="typewriter" className="text-3xl font-bold text-orange-600">{text}</h1>
         </div>
     );
 }

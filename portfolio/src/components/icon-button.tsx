@@ -17,22 +17,22 @@ function IconButton({ Icon, url, type, customClassName, width }: IconButtonProps
 
     switch (type) {
         case "resume":
-            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-slate-300">Resume</span></h1>;
+            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-[#333333]">Resume</span></h1>;
             projectGithubButton();
             isProject = false;
             break;
         case "github":
-            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-slate-300">Github</span></h1>;
+            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-[#333333]">Github</span></h1>;
             projectGithubButton();
             isProject = false;
             break;
         case "linkedin":
-            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-slate-300">LinkedIn</span></h1>;
+            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-orange-900">LinkedIn</span></h1>;
             projectGithubButton();
             isProject = false;
             break;
         case "leetcode":
-            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-slate-300">Leetcode</span></h1>;
+            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-[#333333]">Leetcode</span></h1>;
             projectGithubButton();
             isProject = false;
             break;
@@ -54,7 +54,7 @@ function IconButton({ Icon, url, type, customClassName, width }: IconButtonProps
                 onHoverEnd={() => handleHover(false)}
                 className="flex items-center"
                 initial={{ scale: 1 }}
-                whileHover={{ fill: "rgb(203 213 225)", scale: 1.05}}
+                whileHover={{ fill: "orange-500", scale: 1.05}}
                 transition={{ duration: 0.5 }}
             >   
                 <button onClick={handleClick}>
