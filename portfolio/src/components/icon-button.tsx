@@ -5,9 +5,11 @@ type IconButtonProps = {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     url?: string;
     type?: string;
+    customClassName?: string;
+    width?: string;
 };
 
-function IconButton({ Icon, url, type }: IconButtonProps) {
+function IconButton({ Icon, url, type, customClassName, width }: IconButtonProps) {
     const [isHovering, setIsHovering] = useState(false);
     let iconText;
     let githubButton;
@@ -56,14 +58,14 @@ function IconButton({ Icon, url, type }: IconButtonProps) {
                 transition={{ duration: 0.5 }}
             >   
                 <button onClick={handleClick}>
-                    <Icon className="w-12" />
+                    <Icon className={`${width} ${customClassName}`} />
                 </button>
             </motion.div>
         }
         else {
             githubButton =
             <button onClick={handleClick}>
-            <Icon className="w-12" />
+            <Icon className={`${width} ${customClassName}`} />
             </button> 
         }
     }
