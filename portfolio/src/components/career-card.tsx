@@ -4,8 +4,8 @@ function CareerCard() {
 
     return (
         <div className="flex flex-col">
-            <div className="text-center pt-4">
-                <h1 className="font-semibold text-3xl pt-20">My "job-journey"</h1>
+            <div className="pt-4 ml-10">
+                <h1 className="font-semibold text-5xl pt-20">Work Experience</h1>
             </div>
             <div className="grid grid-cols-3 gap-7 mt-10 m-auto text-center w-full p-6">
                 <Job />

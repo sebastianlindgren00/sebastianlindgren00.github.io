@@ -45,17 +45,9 @@ function EmojiPicker({ emoji }: { emoji?: string }) {
 }
 
 function Project({ title, text, emoji, imgSrc, videoSrc, githubLink, tags }: SkillProps) {
-    const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <motion.div
-            className="flex flex-col bg-[white] overflow-hidden rounded-xl shadow-lg"
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 1.0, ease: "easeInOut" }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="flex flex-col bg-[white] overflow-hidden rounded-xl shadow-lg">
             <div className='flex flex-row'>
                 <div className='flex flex-row space-x-2 m-auto'>
                     <h1 className="font-semibold text-lg">{title}</h1>
@@ -68,12 +60,11 @@ function Project({ title, text, emoji, imgSrc, videoSrc, githubLink, tags }: Ski
             <div className='text-center pt-5'>
                 {text}
             </div>
-            {isHovered && imgSrc && <ImageSlider imgSrc={imgSrc} />}
-            {!isHovered && imgSrc && <img src={imgSrc[0]} className="p-8 relative mx-auto rounded-lg overflow-hidden" alt="Project visual" />}
+            {imgSrc && <ImageSlider imgSrc={imgSrc} />}
             <div className='flex flex-row space-x-2 pt-5 pb-5 m-auto'>
                 {createTags(tags)}
             </div>
-        </motion.div>
+        </div>
     );
 }
 

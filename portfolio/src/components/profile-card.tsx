@@ -12,8 +12,8 @@ function ProfileCard() {
             <div className="flex flex-row text-center mt-20 m-auto">
             <Tilt
             className="parallax-effect-img"
-            tiltMaxAngleX={3}
-            tiltMaxAngleY={3}
+            tiltMaxAngleX={5} // was 3
+            tiltMaxAngleY={5} // was 3
             perspective={800}
             transitionSpeed={1500}
             scale={1.0}
@@ -24,7 +24,7 @@ function ProfileCard() {
                 </div>
             </Tilt>
                 <div className="flex flex-col  w-[800px]">
-                    <h1 className="text-5xl bg-gradient-to-r from-black to-[#333333] text-transparent bg-clip-text border-b-[px] border-black border-solid h-20 float-left">
+                    <h1 className="text-5xl font-semibold bg-gradient-to-r from-black to-[#333333] text-transparent bg-clip-text border-b-[px] border-black border-solid h-20">
                         Sebastian Lindgren
                     </h1>
                     <div className="flex flex-row mt-7 w-[900px] m-auto mb-4 ml-36">
