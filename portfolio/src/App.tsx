@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProfileCard from './components/profile-card';
-import ProjectCard from './components/project-card';
-import CareerCard from './components/career-card';
+import ProfileCard from './components/cards/profile-card';
+import ProjectCard from './components/cards/project-card';
+import CareerCard from './components/cards/career-card';
 
 function App() {
   return (

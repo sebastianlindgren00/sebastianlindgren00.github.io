@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Project from "./project";
+import Project from "../project";
 
 const allProjects = [
     {

@@ -1,9 +1,9 @@
-import IconButton from "./icon-button";
-import LinkedInIcon from "./icons/linkedin-icon";
-import GithubIcon from "./icons/github-icon";
-import ResumeIcon from "./icons/resume-icon";
-import CurlyBracesIcon from "./icons/curly-braces-icon";
-import TypeWriter from "./typewriter";
+import IconButton from "../icon-button";
+import LinkedInIcon from "../icons/linkedin-icon";
+import GithubIcon from "../icons/github-icon";
+import ResumeIcon from "../icons/resume-icon";
+import CurlyBracesIcon from "../icons/curly-braces-icon";
+import TypeWriter from "../typewriter";
 import Tilt from 'react-parallax-tilt';
 
 function ProfileCard() {
