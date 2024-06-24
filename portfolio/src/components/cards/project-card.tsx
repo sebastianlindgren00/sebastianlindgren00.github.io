@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Project from "../project";
+import { AnimatePresence, motion } from 'framer-motion';
 
 const allProjects = [
     {
@@ -58,12 +59,13 @@ function showMoreOrLess(visibleProjects: number, handleShowMore: () => void, han
     else {
         console.log("visibleProjects: ", visibleProjects);
         return (
-            <button
-                className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg"
-                onClick={handleShowLess}
+            <motion.button
+            className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg"
+            onClick={handleShowLess}
+            transition={{ duration: 1 }}
             >
-                Show Less
-            </button>
+            Show Less
+            </motion.button>
         )
     }
 }
@@ -85,17 +87,27 @@ function ProjectCard() {
                 <h1 className="font-semibold text-5xl pt-20">My Projects</h1>
             </div>
             <div className="grid grid-cols-3 gap-7 mt-10 m-auto text-center w-full p-6">
-                {allProjects.slice(0, visibleProjects).map((project, index) => (
-                    <Project
+                <AnimatePresence>
+                    {allProjects.slice(0, visibleProjects).map((project, index) => (
+                        <motion.div
                         key={index}
-                        title={project.title}
-                        text={project.text}
-                        emoji={project.emoji}
-                        imgSrc={project.imgSrc}
-                        githubLink={project.githubLink}
-                        tags={project.tags}
-                    />
-                ))}
+                        initial={{ opacity: 1, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        transition={{ duration: 1 }}
+                        >
+                        <Project
+                            key={index}
+                            title={project.title}
+                            text={project.text}
+                            emoji={project.emoji}
+                            imgSrc={project.imgSrc}
+                            githubLink={project.githubLink}
+                            tags={project.tags}
+                        />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
             {showMoreOrLess(visibleProjects, handleShowMore, handleShowLess)}
         </div>

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import '@fontsource/fira-mono';
+@import '@fontsource/lato';
 
 .App {
   text-align: center;
@@ -13,7 +14,7 @@
 }
 
 :root {
-  font-family: 'Fira Mono', monospace;
+  font-family: 'Lato', sans-serif;
   color: theme('colors.black');
 }
 

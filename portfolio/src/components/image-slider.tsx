@@ -52,14 +52,18 @@ function ImageSlider({ imgSrc }: { imgSrc: string[] }) {
     function renderArrows(length: number) {
         if (length <= 1) return null;
         return (
-            <>
+            <motion.div
+            whileHover={{
+                fill: "#a0aec0",
+              }}
+            >
                 <div onClick={nextImage} className="cursor-pointer absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
                     <ArrowRight />
                 </div>
                 <div onClick={prevImage} className="cursor-pointer absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
                     <ArrowLeft />
                 </div>
-            </>
+                </motion.div>
         );
     }
 
