@@ -1,19 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ProfileCard from './components/cards/profile-card';
 import ProjectCard from './components/cards/project-card';
 import CareerCard from './components/cards/career-card';
+import Header from './header';
+import AppRouter from './router';
 
 function App() {
   return (
     <>
-        {/* Entire ProfileCard - contains components: CurlyBracesIcon, GithubIcon, LeetcodeIcon, LinkedinIcon, ResumeIcon, IconButton and TypeWriter */}
+      <Header />
+      
+      <div id="profile">
         <ProfileCard />
-        {/* Entire ProjectCard - contains components: Project */}
-        <ProjectCard />
-        {/* Entire CareerCard - contains components: Job */}
-        <CareerCard />
+      </div>
+
+      <div className='pl-[80px] pt-20 pr-[80px] pb-[80px] justify-center items-center space-y-20'>
+        <div id="projects">
+          <ProjectCard />
+        </div>
+        
+        <div id="career">
+          <CareerCard />
+        </div>
+      </div>
+      <AppRouter />
     </>
   );
 }

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import Project from "../project";
+import Project from "../data/project";
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const allProjects = [
     {
+        id: "todo-tulip",
         title: "ToDo-Tulip",
         text: "A simple todo app that uses SvelteKit, TypeScript, PocketBase and TailwindCSS",
         emoji: "🌷",
@@ -12,6 +14,7 @@ const allProjects = [
         tags: ["Svelte", "TypeScript", "PocketBase", "TailwindCSS"]
     },
     {
+        id: "portfolio-website",
         title: "Portfolio website",
         text: "This website, built with React, TypeScript, TailwindCSS and Deployed with Github Pages",
         emoji: "🌐",
@@ -20,6 +23,7 @@ const allProjects = [
         tags: ["React", "TypeScript", "TailwindCSS", "Github Pages"]
     },
     {
+        id: "seasons",
         title: "Procedurally Generated Seasons",
         text: "System for generating 4 different versions of tree using Lindenmayer Systems",
         emoji: "tree",
@@ -27,6 +31,7 @@ const allProjects = [
         imgSrc: ["todotulip-login.png", "todotulip-create.png", "todotulip-page.png"]
     },
     {
+        id: "get-the-beat",
         title: "Get The Beat",
         text: "A rhytm based 'kinect-styled' game, created in Godot with Python, GDScript and JSON",
         emoji: "🎵",
@@ -35,6 +40,7 @@ const allProjects = [
         tags: ["Godot", "Python", "GDScript", "JSON"]
     },
     {
+        id: "mic-game",
         title: "Mic Game",
         text: "Control the little pixel guy with your voice! You scream, he jumps!",
         emoji: "🎤",
@@ -71,45 +77,62 @@ function showMoreOrLess(visibleProjects: number, handleShowMore: () => void, han
 }
 
 function ProjectCard() {
-    const [visibleProjects, setVisibleProjects] = useState(3);
+    const [visibleProjects, setVisibleProjects] = useState(2);
 
     const handleShowMore = () => {
-        setVisibleProjects(prev => prev + 3);
+        setVisibleProjects(prev => prev + 2);
     };
 
     const handleShowLess = () => {
-        setVisibleProjects(prev => prev - 3);
-    }
+        setVisibleProjects(prev => prev - 2);
+    };
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-[#FDF4E3] rounded-xl shadow-lg p-[20px]">
             <div className="pt-4 ml-10">
-                <h1 className="font-semibold text-5xl pt-20">My Projects</h1>
+                <h1 className="font-semibold text-[#4A2C2A] text-5xl">My Projects</h1>
             </div>
-            <div className="grid grid-cols-3 gap-7 mt-10 m-auto text-center w-full p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-10 mx-auto text-center w-full p-6 justify-center items-stretch">
                 <AnimatePresence>
                     {allProjects.slice(0, visibleProjects).map((project, index) => (
                         <motion.div
-                        key={index}
-                        initial={{ opacity: 1, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 1 }}
+                            key={project.id}
+                            initial={{ opacity: 1, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            transition={{ duration: 1 }}
+                            className="flex h-full"
                         >
-                        <Project
-                            key={index}
-                            title={project.title}
-                            text={project.text}
-                            emoji={project.emoji}
-                            imgSrc={project.imgSrc}
-                            githubLink={project.githubLink}
-                            tags={project.tags}
-                        />
+                            <Link to={`/projects/${project.id}`} className="w-full">
+                                <Project
+                                    title={project.title}
+                                    text={project.text}
+                                    emoji={project.emoji}
+                                    imgSrc={project.imgSrc}
+                                    githubLink={project.githubLink}
+                                    tags={project.tags}
+                                />
+                            </Link>
                         </motion.div>
                     ))}
                 </AnimatePresence>
             </div>
-            {showMoreOrLess(visibleProjects, handleShowMore, handleShowLess)}
+            {/* Show More/Less Buttons */}
+            {visibleProjects < allProjects.length ? (
+                <button
+                    className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg"
+                    onClick={handleShowMore}
+                >
+                    Show More
+                </button>
+            ) : (
+                <button
+                    className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg"
+                    onClick={handleShowLess}
+                >
+                    Show Less
+                </button>
+            )}
         </div>
     );
 }
