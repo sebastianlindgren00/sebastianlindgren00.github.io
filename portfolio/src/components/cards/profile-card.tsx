@@ -8,23 +8,17 @@ import Tilt from 'react-parallax-tilt';
 
 export default function ProfileCard() {
     return (
-        <div className="flex flex-col bg-[#FDF4E3] rounded-b-xl shadow-lg h-screen justify-center items-center w-screen">
+        <div className="flex flex-col shadow-lg h-screen w-screen justify-center items-center">
             <div className="flex flex-row">
-                <Tilt
-                    className="parallax-effect-img"
-                    tiltMaxAngleX={5}
-                    tiltMaxAngleY={5}
-                    perspective={800}
-                    transitionSpeed={1500}
-                    scale={1.0}
-                    gyroscope={true}
-                >
-                    <div className="w-[500px] drop-shadow-2xl bg-gradient-to-r rounded-full from-black to-black p-0.5 mr-20">
-                        <img src="/profilbild.png" alt="Profile"/>
-                    </div>
-                </Tilt>
-                <div className="flex flex-col w-[800px]">
-                    <h1 className="text-5xl font-semibold text-[#4A2C2A]">
+            <div className="w-[700px] h-[700px] overflow-hidden rounded-full flex items-center justify-center">
+                <img
+                    src="/profilbild.jpg"
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                />
+            </div>
+                <div className="flex flex-col w-[50%]">
+                    <h1 className="text-7xl font-semibold">
                         Sebastian Lindgren
                     </h1>
                     <div className="flex flex-row mt-7 mb-4">

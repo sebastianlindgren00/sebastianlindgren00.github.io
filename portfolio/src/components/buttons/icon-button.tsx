@@ -16,11 +16,6 @@ function IconButton({ Icon, url, type, customClassName, width }: IconButtonProps
     let isProject = false;
 
     switch (type) {
-        case "resume":
-            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-orange-600">Resume</span></h1>;
-            projectGithubButton();
-            isProject = false;
-            break;
         case "github":
             iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-[#ff8c44]">Github</span></h1>;
             projectGithubButton();
@@ -30,16 +25,6 @@ function IconButton({ Icon, url, type, customClassName, width }: IconButtonProps
             iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-[#ff8c44]">LinkedIn</span></h1>;
             projectGithubButton();
             isProject = false;
-            break;
-        case "leetcode":
-            iconText = <h1 className="font-semibold ml-14">Press the icon to get to my <span className="text-orange-600">Leetcode</span></h1>;
-            projectGithubButton();
-            isProject = false;
-            break;
-        case "project":
-            iconText = "";
-            isProject = true;
-            projectGithubButton();
             break;
         default:
             break;
@@ -53,7 +38,7 @@ function IconButton({ Icon, url, type, customClassName, width }: IconButtonProps
                 onHoverStart={() => handleHover(true)}
                 onHoverEnd={() => handleHover(false)}
                 className="flex items-center"
-                initial={{ scale: 1 }}
+                initial={{ scale: 1, fill: "button" }}
                 whileHover={{ fill: "#ff8c44", scale: 1.05}}
                 transition={{ duration: 0.5 }}
             >   
