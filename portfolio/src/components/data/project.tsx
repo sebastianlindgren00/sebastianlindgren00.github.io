@@ -1,71 +1,68 @@
-import { motion } from 'framer-motion';
-import IconButton from "../buttons/icon-button";
-import GithubIcon from "../icons/github-icon";
 import { useState, useEffect } from 'react';
-import ImageSlider from '../gadgets/image-slider';
 
-type SkillProps = {
-    title: string;
-    text: string;
-    emoji?: string;
-    imgSrc?: string[];
-    videoSrc?: string;
-    githubLink?: string;
-    tags?: string[];
+type ProjectProps = {
+  title: string;
+  emoji?: string;
+  imgSrc?: string;
+  tags?: string[];
 };
 
 function createTags(tags?: string[]) {
-    return tags?.map((tag) => (
-        <div key={tag} className="bg-gray-200 rounded-full px-2 py-1 text-sm">{tag}</div>
-    ));
+  return tags?.map((tag) => (
+    <div key={tag} className="bg-electric-blue rounded-full px-2 py-1 text-sm">
+      {tag}
+    </div>
+  ));
 }
 
 function EmojiPicker({ emoji }: { emoji?: string }) {
-    const [currentEmoji, setCurrentEmoji] = useState("🌳");
-    const emojis = ["🌳", "🍂", "❄️", "🌱"];
+  const [currentEmoji, setCurrentEmoji] = useState("🌳");
+  const emojis = ["🌳", "🍂", "❄️", "🌱"];
 
-    useEffect(() => {
-        if (emoji === "tree") {
-            let timer = 0;
-            const interval = setInterval(() => {
-                timer = (timer + 1) % emojis.length;
-                setCurrentEmoji(emojis[timer]);
-            }, 2000);
-
-            // Cleanup interval on component unmount or emoji change
-            return () => clearInterval(interval);
-        }
-    }, [emoji]);
-
+  useEffect(() => {
     if (emoji === "tree") {
-        return <h1 className="text-lg ml-2">{currentEmoji}</h1>;
-    } else {
-        return <h1 className="text-lg ml-2">{emoji}</h1>;
+      let timer = 0;
+      const interval = setInterval(() => {
+        timer = (timer + 1) % emojis.length;
+        setCurrentEmoji(emojis[timer]);
+      }, 2000);
+
+      return () => clearInterval(interval);
     }
+  }, [emoji]);
+
+  return <h1 className="text-lg ml-2">{emoji === "tree" ? currentEmoji : emoji}</h1>;
 }
 
-function Project({ title, text, emoji, imgSrc, videoSrc, githubLink, tags }: SkillProps) {
+function Project({ title, emoji, imgSrc, tags }: ProjectProps) {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="flex items-center space-x-2 mb-4">
+        <h1 className="font-semibold text-xl">{title}</h1>
+        {emoji && <EmojiPicker emoji={emoji} />}
+      </div>
 
-    return (
-        <div className="flex flex-col bg-white overflow-hidden rounded-xl shadow-lg h-full">
-            <div className="flex flex-row">
-                <div className="flex flex-row space-x-2 m-auto">
-                    <h1 className="font-semibold text-lg">{title}</h1>
-                    <EmojiPicker emoji={emoji} />
-                </div>
-                <div className="float-right pr-4 pt-4">
-                    <IconButton width="w-8" customClassName="" Icon={GithubIcon} url={githubLink} type="project" />
-                </div>
-            </div>
-            <div className="text-center pt-5 px-4">
-                {text}
-            </div>
-            {imgSrc && <ImageSlider imgSrc={imgSrc} />}
-            <div className="flex flex-row space-x-2 pt-5 pb-5 m-auto">
-                {createTags(tags)}
-            </div>
+      <div className="w-[600px] h-[400px] overflow-hidden rounded-xl shadow-lg border-2 border-deep-teal">
+        {imgSrc ? (
+          <img 
+          src={imgSrc} 
+          alt={title} 
+          className="w-full h-full object-cover" 
+        />
+        ) : (
+          <div className="w-full h-64 bg-gray-300 flex items-center justify-center">
+            No Image
+          </div>
+        )}
+      </div>
+
+      {tags && tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-4">
+          {createTags(tags)}
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default Project;

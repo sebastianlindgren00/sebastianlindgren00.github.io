@@ -20,7 +20,7 @@ const renderPosition = (
         return (
             <>
                 <div className="relative flex flex-col">
-                    <div className="rounded-xl shadow-2xl bg-white flex flex-col w-[80%] p-4">
+                    <div className="rounded-xl shadow-2xl bg-deep-teal flex flex-col w-[80%] p-4">
                         <h1 className="font-semibold text-xl">{company}</h1>
                         <p>{title}</p>
                         <p>{date}</p>

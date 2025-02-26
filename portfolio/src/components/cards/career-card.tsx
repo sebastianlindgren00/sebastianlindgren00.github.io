@@ -42,9 +42,9 @@ const allJobs = [
 
 function CareerCard() {
     return (
-        <div className="flex flex-col bg-[#FDF4E3] rounded-xl shadow-lg p-[20px]">
+        <div className="flex flex-col rounded-xl">
             <div className="pt-4 ml-10">
-                <h1 className="font-semibold text-[#4A2C2A] text-5xl">Work Experience</h1>
+                <h1 className="font-semibold text-5xl">Work Experience</h1>
             </div>
             <div className="grid grid-cols-1 gap-7 mt-10 m-auto text-center w-full p-6">
                 {allJobs.slice(0).map((job, index) => (

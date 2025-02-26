@@ -16,13 +16,15 @@
 :root {
   font-family: 'Lato', sans-serif;
   color: theme('colors.black');
-
-  --color-midnight-blue: #1B1F3B;
-  --color-deep-teal: #2C3E50;
-  --color-electric-blue: #007BFF;
-  --color-sky-blue: #56CCF2;
-  --color-soft-white: #F5F5F5;
-  --color-light-gray: #D3D3D3;
+  /*
+  * Color Palette
+  */
+  --color-midnight-blue: #1B1F3B; /* Main background color */
+  --color-deep-teal: #2C3E50; /* For header, secondary background, sections */
+  --color-electric-blue: #007BFF; /* Links, buttons, highlights */
+  --color-sky-blue: #56CCF2; /* Subtle accents, hover effects */
+  --color-soft-white: #F5F5F5; /* Main text */
+  --color-light-gray: #D3D3D3; /* Secondary text, borders */
 }
 
 @media (prefers-reduced-motion: no-preference) {
