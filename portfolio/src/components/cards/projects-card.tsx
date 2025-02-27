@@ -85,8 +85,9 @@ function ProjectsCard() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8 }}
-                  className="bg-[#2A2D3A] rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  transition={{ duration: 0.1 }}
+                  whileHover={{ scale: 1.05 }} 
+                  className="bg-[#2A2D3A] rounded-2xl shadow-xl overflow-hidden transition-transform duration-300 cursor-pointer"
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="w-full h-64 overflow-hidden">
@@ -104,7 +105,10 @@ function ProjectsCard() {
                     <p className="text-gray-300 text-sm mb-4">{project.text}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, index) => (
-                        <span key={index} className="bg-[#3A3F52] text-gray-200 text-xs px-3 py-1 rounded-full">
+                        <span
+                          key={index}
+                          className="bg-[#3A3F52] text-gray-200 text-xs px-3 py-1 rounded-full"
+                        >
                           {tag}
                         </span>
                       ))}
@@ -147,7 +151,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       onClick={onClose}
     >
       <motion.div
-        onClick={(e) => e.stopPropagation()} 
+        onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
