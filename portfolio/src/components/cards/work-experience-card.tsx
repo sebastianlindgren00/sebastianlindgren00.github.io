@@ -1,4 +1,3 @@
-import React from "react";
 import EmojiConvertor from "emoji-js";
 
 const emoji = new EmojiConvertor();

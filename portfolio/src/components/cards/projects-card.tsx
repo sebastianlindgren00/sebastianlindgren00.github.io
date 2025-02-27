@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import EmojiConvertor from 'emoji-js';
 import GithubIcon from '../icons/github-icon';
@@ -19,24 +19,6 @@ textEmoji.allow_native = true;
 
 const allProjects: Project[] = [
   {
-    id: "todo-tulip",
-    title: "ToDo-Tulip",
-    text: "A simple todo app that uses SvelteKit, TypeScript, PocketBase and TailwindCSS",
-    emoji: "🌷",
-    imgSrc: "/todotulip-login.png",
-    githubLink: "https://github.com/sebastianlindgren00/todo-tulip",
-    tags: ["Svelte", "TypeScript", "PocketBase", "TailwindCSS"],
-  },
-  {
-    id: "monte-carlo-raytracer",
-    title: "Monte-Carlo Raytracer",
-    text: "Built with React, TypeScript, TailwindCSS and deployed with GitHub Pages",
-    emoji: "🔆",
-    imgSrc: "/500samples_complete_roof&floor_rightcolors.png",
-    githubLink: "https://github.com/sebastianlindgren00/monte-carlo-raytracer",
-    tags: ["C++", "OpenGL"],
-  },
-  {
     id: "archipelago",
     title: "Archipelago",
     text: "Thriller game where you solve puzzles to escape the archipelago while evading the warden.",
@@ -46,9 +28,27 @@ const allProjects: Project[] = [
     tags: ["Unity", "C#", "Decision Trees"],
   },
   {
+    id: "monte-carlo-raytracer",
+    title: "Monte-Carlo Raytracer",
+    text: "Implemented monte-carlo raytracing algorithms in C++ with OpenGL for rendering. All running on the CPU",
+    emoji: "🔆",
+    imgSrc: "/500samples_complete_roof&floor_rightcolors.png",
+    githubLink: "https://github.com/sebastianlindgren00/monte-carlo-raytracer",
+    tags: ["C++", "OpenGL"],
+  },
+  {
+    id: "todo-tulip",
+    title: "ToDo-Tulip",
+    text: "A simple todo app that uses SvelteKit, TypeScript, PocketBase and TailwindCSS",
+    emoji: "🌷",
+    imgSrc: "/todotulip-login.png",
+    githubLink: "https://github.com/sebastianlindgren00/todo-tulip",
+    tags: ["Svelte", "TypeScript", "PocketBase", "TailwindCSS"],
+  },
+  {
     id: "seasons",
     title: "Procedurally Generated Seasons",
-    text: "Generates 4 tree versions using Lindenmayer Systems.",
+    text: "Generates the 4 seasons using Lindenmayer systems, Perlin noise, custom shader and heightmap.",
     emoji: "🌳",
     imgSrc: "/proc_gene_seasons.png",
     githubLink: "https://github.com/sebastianlindgren00/ProcedurallyGeneratedSeasons",
@@ -144,10 +144,10 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50"
-      onClick={onClose} // Close modal when clicking on the backdrop
+      onClick={onClose}
     >
       <motion.div
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        onClick={(e) => e.stopPropagation()} 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
