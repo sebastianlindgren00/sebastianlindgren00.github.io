@@ -1,131 +1,212 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import EmojiConvertor from 'emoji-js';
+import GithubIcon from '../icons/github-icon';
 
-const emoji = new EmojiConvertor();
-emoji.replace_mode = 'unified';
-emoji.allow_native = true;
-const allProjects = [
+interface Project {
+  id: string;
+  title: string;
+  text: string;
+  emoji: string;
+  imgSrc: string;
+  githubLink?: string;
+  tags: string[];
+}
+
+const textEmoji = new EmojiConvertor();
+textEmoji.replace_mode = 'unified';
+textEmoji.allow_native = true;
+
+const allProjects: Project[] = [
   {
     id: "todo-tulip",
     title: "ToDo-Tulip",
     text: "A simple todo app that uses SvelteKit, TypeScript, PocketBase and TailwindCSS",
     emoji: "🌷",
     imgSrc: "/todotulip-login.png",
+    githubLink: "https://github.com/sebastianlindgren00/todo-tulip",
     tags: ["Svelte", "TypeScript", "PocketBase", "TailwindCSS"],
   },
   {
     id: "monte-carlo-raytracer",
     title: "Monte-Carlo Raytracer",
-    text: "This website, built with React, TypeScript, TailwindCSS and Deployed with Github Pages",
+    text: "Built with React, TypeScript, TailwindCSS and deployed with GitHub Pages",
     emoji: "🔆",
     imgSrc: "/500samples_complete_roof&floor_rightcolors.png",
+    githubLink: "https://github.com/sebastianlindgren00/monte-carlo-raytracer",
     tags: ["C++", "OpenGL"],
   },
   {
     id: "archipelago",
     title: "Archipelago",
-    text: "Thriller game. Find your way out of the archipelago by solving puzzles and avoiding the warden",
+    text: "Thriller game where you solve puzzles to escape the archipelago while evading the warden.",
     emoji: "🏝️",
     imgSrc: "/archipelago.jpg",
+    githubLink: "https://github.com/sebastianlindgren00/archipelago",
     tags: ["Unity", "C#", "Decision Trees"],
   },
   {
     id: "seasons",
     title: "Procedurally Generated Seasons",
-    text: "System for generating 4 different versions of tree using Lindenmayer Systems",
+    text: "Generates 4 tree versions using Lindenmayer Systems.",
     emoji: "🌳",
-    tags: ["Unity", "C#", "Lindenmayer Systems"],
     imgSrc: "/proc_gene_seasons.png",
+    githubLink: "https://github.com/sebastianlindgren00/ProcedurallyGeneratedSeasons",
+    tags: ["Unity", "C#", "Lindenmayer Systems"],
   },
 ];
 
 function ProjectsCard() {
   const [visibleProjects, setVisibleProjects] = useState(2);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleShowMore = () => setVisibleProjects((prev) => prev + 2);
   const handleShowLess = () => setVisibleProjects((prev) => Math.max(prev - 2, 2));
 
   return (
-    <div className="bg-[#1C1F2B] py-16 px-6 rounded-xl w-full h-full">
-      <section className="max-w-5xl mx-auto">
-        <div className="relative mb-10">
-          <h1 className="text-5xl font-bold text-white inline-block relative pb-2">
-            My Projects
-            <span className="absolute bottom-0 left-0 w-full h-1 bg-electric-blue rounded-lg"></span>
-          </h1>
-        </div>
-        <p className="text-lg text-gray-400 mb-10">
-          Some of my projects from school or spare time {emoji.replace_colons(':rocket:')} Click on one to see more and access repo.
-        </p>
+    <>
+      <div className="bg-[#1C1F2B] py-16 px-6 rounded-xl w-full h-full">
+        <section className="max-w-5xl mx-auto">
+          <div className="relative mb-10">
+            <h1 className="text-5xl font-bold text-white inline-block relative pb-2">
+              My Projects
+              <span className="absolute bottom-0 left-0 w-full h-1 bg-electric-blue rounded-lg"></span>
+            </h1>
+          </div>
+          <p className="text-lg text-gray-400 mb-10">
+            Some of my projects from school or spare time {textEmoji.replace_colons(':rocket:')} Click on one to see more.
+          </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <AnimatePresence>
-            {allProjects.slice(0, visibleProjects).map((project) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.8 }}
-                className="bg-[#2A2D3A] rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-transform duration-300"
-              >
-                <Link to={`/projects/${project.id}`} className="block w-full h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <AnimatePresence>
+              {allProjects.slice(0, visibleProjects).map((project) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.8 }}
+                  className="bg-[#2A2D3A] rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
+                >
                   <div className="w-full h-64 overflow-hidden">
-                    {project.imgSrc ? (
-                      <img
-                        src={project.imgSrc}
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-600">
-                        No Image Available
-                      </div>
-                    )}
+                    <img
+                      src={project.imgSrc}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-2xl font-semibold text-white">{project.title}</h2>
-                      <span className="text-lg">{project.emoji}</span>
+                      {textEmoji && <EmojiPicker emoji={project.emoji} />}
                     </div>
                     <p className="text-gray-300 text-sm mb-4">{project.text}</p>
                     <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="bg-[#3A3F52] text-gray-200 text-xs px-3 py-1 rounded-full"
-                        >
+                        <span key={index} className="bg-[#3A3F52] text-gray-200 text-xs px-3 py-1 rounded-full">
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
 
-        {visibleProjects < allProjects.length ? (
-          <button
-            className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-colors"
-            onClick={handleShowMore}
-          >
-            Show More
-          </button>
-        ) : (
-          <button
-            className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-colors"
-            onClick={handleShowLess}
-          >
-            Show Less
-          </button>
-        )}
-      </section>
+          {visibleProjects < allProjects.length ? (
+            <button
+              className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-colors"
+              onClick={handleShowMore}
+            >
+              Show More
+            </button>
+          ) : (
+            <button
+              className="mx-auto mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-colors"
+              onClick={handleShowLess}
+            >
+              Show Less
+            </button>
+          )}
+        </section>
+      </div>
+
+      {selectedProject && (
+        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      )}
+    </>
+  );
+}
+
+function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50"
+      onClick={onClose} // Close modal when clicking on the backdrop
+    >
+      <motion.div
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        className="bg-[#2A2D3A] rounded-2xl shadow-2xl p-6 max-w-4xl w-full relative overflow-hidden"
+      >
+        <div className="flex flex-col gap-4">
+          <div className="relative">
+            <img
+              src={project.imgSrc}
+              alt={project.title}
+              className="w-full h-96 object-cover rounded-xl"
+            />
+            {project.githubLink && (
+              <a
+                href={project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-4 right-4 bg-white rounded-full p-2 shadow hover:bg-gray-100 transition"
+              >
+                <GithubIcon className="w-6 h-6" />
+              </a>
+            )}
+          </div>
+          <h2 className="text-3xl font-bold text-white">{project.title}</h2>
+          <p className="text-gray-300">{project.text}</p>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-[#3A3F52] text-gray-200 text-xs px-3 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
+}
+
+function EmojiPicker({ emoji }: { emoji?: string }) {
+  const [currentEmoji, setCurrentEmoji] = useState("🌳");
+  const emojis = ["🌳", "🍂", "❄️", "🌱"];
+
+  useEffect(() => {
+    if (emoji === "🌳") {
+      let timer = 0;
+      const interval = setInterval(() => {
+        timer = (timer + 1) % emojis.length;
+        setCurrentEmoji(emojis[timer]);
+      }, 2000);
+
+      return () => clearInterval(interval);
+    }
+  }, [emoji]);
+
+  return <span className="text-lg">{emoji === "🌳" ? currentEmoji : emoji}</span>;
 }
 
 export default ProjectsCard;

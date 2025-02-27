@@ -2,16 +2,13 @@ import React from 'react';
 import './App.css';
 import ProfileCard from './components/cards/profile-card';
 import ProjectsCard from './components/cards/projects-card';
-import CareerCard from './components/cards/career-card';
 import Header from './header';
-import AppRouter from './router';
 import WorkExperience from './components/cards/work-experience-card';
 
 function App() {
   return (
     <>
       <Header />
-      
       <div id="profile">
         <ProfileCard />
       </div>
@@ -25,7 +22,6 @@ function App() {
           <WorkExperience />
         </div>
       </div>
-      <AppRouter />
     </>
   );
 }
