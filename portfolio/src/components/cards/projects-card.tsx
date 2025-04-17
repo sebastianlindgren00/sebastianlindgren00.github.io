@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import EmojiConvertor from 'emoji-js';
-import GithubIcon from '../icons/github-icon';
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import EmojiConvertor from "emoji-js";
+import GithubIcon from "../icons/github-icon";
 
 interface Project {
   id: string;
@@ -10,11 +10,12 @@ interface Project {
   emoji: string;
   imgSrc: string;
   githubLink?: string;
+  vercelLink?: string;
   tags: string[];
 }
 
 const textEmoji = new EmojiConvertor();
-textEmoji.replace_mode = 'unified';
+textEmoji.replace_mode = "unified";
 textEmoji.allow_native = true;
 
 const allProjects: Project[] = [
@@ -26,6 +27,15 @@ const allProjects: Project[] = [
     imgSrc: "/archipelago.jpg",
     githubLink: "https://github.com/sebastianlindgren00/archipelago",
     tags: ["Unity", "C#", "Decision Trees"],
+  },
+  {
+    id: "a-marvelous-guide",
+    title: "A MARVELous Guide",
+    text: "A website that logs your MCU progress and tells you what to watch next.",
+    emoji: "🦸‍♂️",
+    imgSrc: "/a-marvelous-guide-landing-page.png",
+    vercelLink: "https://a-marvelous-guide.vercel.app/",
+    tags: ["Spring Boot", "React", "PostgreSQL", "OAuth2", "TypeScript"],
   },
   {
     id: "monte-carlo-raytracer",
@@ -51,7 +61,8 @@ const allProjects: Project[] = [
     text: "Generates the 4 seasons using Lindenmayer systems, Perlin noise, custom shader and heightmap.",
     emoji: "🌳",
     imgSrc: "/proc_gene_seasons.png",
-    githubLink: "https://github.com/sebastianlindgren00/ProcedurallyGeneratedSeasons",
+    githubLink:
+      "https://github.com/sebastianlindgren00/ProcedurallyGeneratedSeasons",
     tags: ["Unity", "C#", "Lindenmayer Systems"],
   },
 ];
@@ -61,7 +72,8 @@ function ProjectsCard() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleShowMore = () => setVisibleProjects((prev) => prev + 2);
-  const handleShowLess = () => setVisibleProjects((prev) => Math.max(prev - 2, 2));
+  const handleShowLess = () =>
+    setVisibleProjects((prev) => Math.max(prev - 2, 2));
 
   return (
     <>
@@ -74,7 +86,8 @@ function ProjectsCard() {
             </h1>
           </div>
           <p className="text-base md:text-lg text-gray-400 mb-8 md:mb-10">
-            Some of my projects from school or spare time {textEmoji.replace_colons(':rocket:')} Click on one to see more.
+            Some of my projects from school or spare time{" "}
+            {textEmoji.replace_colons(":rocket:")} Click on one to see more.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
@@ -99,10 +112,14 @@ function ProjectsCard() {
                   </div>
                   <div className="p-4 md:p-6">
                     <div className="flex items-center justify-between mb-3 md:mb-4">
-                      <h2 className="text-xl md:text-2xl font-semibold text-white">{project.title}</h2>
+                      <h2 className="text-xl md:text-2xl font-semibold text-white">
+                        {project.title}
+                      </h2>
                       {textEmoji && <EmojiPicker emoji={project.emoji} />}
                     </div>
-                    <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">{project.text}</p>
+                    <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">
+                      {project.text}
+                    </p>
                     <div className="flex flex-wrap gap-1 md:gap-2">
                       {project.tags.map((tag, index) => (
                         <span
@@ -138,13 +155,22 @@ function ProjectsCard() {
       </div>
 
       {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
       )}
     </>
   );
 }
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) {
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50 p-4"
@@ -176,7 +202,9 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </a>
             )}
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white">{project.title}</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white">
+            {project.title}
+          </h2>
           <p className="text-gray-300">{project.text}</p>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag, index) => (
@@ -188,6 +216,18 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </span>
             ))}
           </div>
+
+          {/* 👇 Visit Website button here */}
+          {project.vercelLink && (
+            <a
+              href={project.vercelLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block bg-electric-blue text-white text-sm md:text-base font-semibold py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors text-center w-max"
+            >
+              Visit Website
+            </a>
+          )}
         </div>
       </motion.div>
     </div>
@@ -210,7 +250,10 @@ function EmojiPicker({ emoji }: { emoji?: string }) {
     }
   }, [emoji]);
 
-  return <span className="text-lg">{emoji === "🌳" ? currentEmoji : emoji}</span>;
+  return (
+    <span className="text-lg">{emoji === "🌳" ? currentEmoji : emoji}</span>
+  );
 }
 
 export default ProjectsCard;
+
