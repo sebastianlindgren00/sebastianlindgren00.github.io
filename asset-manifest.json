@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6c1de97d.css",
-    "main.js": "/static/js/main.c09c9c18.js",
+    "main.css": "/static/css/main.60c270f7.css",
+    "main.js": "/static/js/main.c8c14931.js",
     "static/media/lato-latin-400-normal.woff2": "/static/media/lato-latin-400-normal.be36596da218e1eec01c.woff2",
     "static/media/lato-latin-400-normal.woff": "/static/media/lato-latin-400-normal.190b769c7be76a0f0dbf.woff",
     "static/media/fira-mono-latin-400-normal.woff2": "/static/media/fira-mono-latin-400-normal.4df5563d9c8ede1c3281.woff2",
@@ -19,11 +19,11 @@
     "static/media/lato-latin-ext-400-normal.woff2": "/static/media/lato-latin-ext-400-normal.361f3dbb9db6a5980326.woff2",
     "static/media/lato-latin-ext-400-normal.woff": "/static/media/lato-latin-ext-400-normal.221746f6ba5760746446.woff",
     "index.html": "/index.html",
-    "main.6c1de97d.css.map": "/static/css/main.6c1de97d.css.map",
-    "main.c09c9c18.js.map": "/static/js/main.c09c9c18.js.map"
+    "main.60c270f7.css.map": "/static/css/main.60c270f7.css.map",
+    "main.c8c14931.js.map": "/static/js/main.c8c14931.js.map"
   },
   "entrypoints": [
-    "static/css/main.6c1de97d.css",
-    "static/js/main.c09c9c18.js"
+    "static/css/main.60c270f7.css",
+    "static/js/main.c8c14931.js"
   ]
 }
