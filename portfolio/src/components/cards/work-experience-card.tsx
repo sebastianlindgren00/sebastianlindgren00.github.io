@@ -1,10 +1,18 @@
 import EmojiConvertor from "emoji-js";
 
 const emoji = new EmojiConvertor();
-emoji.replace_mode = 'unified';
+emoji.replace_mode = "unified";
 emoji.allow_native = true;
 
 const workExperience = [
+  {
+    title: "Master's thesis",
+    company: "Vermiculus Financial Technology",
+    date: "January 2025 - May 2025",
+    skills: ["Java", "JavaScript", "Data Structures"],
+    description:
+      "Researching about market fairness in cloud environments. Working primarily in Java.",
+  },
   {
     title: "Software Developer",
     company: "CTEK",
@@ -40,7 +48,7 @@ function WorkExperience() {
           <span className="absolute bottom-0 left-0 w-full h-1 bg-electric-blue rounded-lg"></span>
         </h1>
         <p className="text-base md:text-lg text-gray-400 mb-8 md:mb-10">
-          Some of my workplaces so far {emoji.replace_colons(':briefcase:')}
+          Some of my workplaces so far {emoji.replace_colons(":briefcase:")}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
@@ -50,17 +58,23 @@ function WorkExperience() {
               className="bg-[#2A2D3A] rounded-2xl shadow-lg p-4 md:p-6 hover:scale-105 transition-transform duration-300"
             >
               <div className="mb-4">
-                <h2 className="text-xl md:text-2xl font-semibold text-white">{job.title}</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-white">
+                  {job.title}
+                </h2>
                 <a
                   href="#"
                   className="text-blue-400 text-base md:text-lg hover:underline"
                 >
                   {job.company}
                 </a>
-                <p className="text-gray-400 text-sm md:text-base mt-1">{job.date}</p>
+                <p className="text-gray-400 text-sm md:text-base mt-1">
+                  {job.date}
+                </p>
               </div>
 
-              <p className="text-gray-300 mb-4 text-sm md:text-base">{job.description}</p>
+              <p className="text-gray-300 mb-4 text-sm md:text-base">
+                {job.description}
+              </p>
 
               <div className="flex flex-wrap gap-2">
                 {job.skills.map((skill, idx) => (
@@ -81,3 +95,4 @@ function WorkExperience() {
 }
 
 export default WorkExperience;
+
